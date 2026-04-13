@@ -1,0 +1,2121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ADJÖAA — Shop Africa & Beyond</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0A0A0A;
+    --white: #FAFAF8;
+    --cream: #F5F0E8;
+    --terracotta: #C84B31;
+    --terracotta-dark: #A03822;
+    --gold: #C8963E;
+    --gold-light: #E8B86D;
+    --charcoal: #2C2C2A;
+    --mid-gray: #6B6B68;
+    --light-gray: #E8E6E0;
+    --border: rgba(0,0,0,0.1);
+    --shadow: 0 4px 24px rgba(0,0,0,0.08);
+    --radius: 12px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--white);
+    color: var(--black);
+    overflow-x: hidden;
+  }
+
+  /* PROMO BAR */
+  .promo-bar {
+    background: var(--terracotta);
+    color: white;
+    text-align: center;
+    padding: 10px 20px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .promo-bar a { color: white; text-decoration: underline; cursor: pointer; }
+
+  /* HEADER */
+  .top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 40px;
+    border-bottom: 1px solid var(--border);
+    font-size: 12px;
+    color: var(--mid-gray);
+  }
+  .top-bar a { color: var(--mid-gray); text-decoration: none; }
+
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 40px;
+    background: var(--white);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+  }
+
+  .nav-left { display: flex; gap: 28px; font-size: 13px; font-weight: 500; letter-spacing: 0.04em; }
+  .nav-left a { text-decoration: none; color: var(--charcoal); transition: color .2s; }
+  .nav-left a:hover { color: var(--terracotta); }
+
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 900;
+    letter-spacing: 0.06em;
+    color: var(--black);
+    text-decoration: none;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .logo span { color: var(--terracotta); }
+
+  .nav-right { display: flex; align-items: center; gap: 18px; }
+  .nav-right button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    color: var(--charcoal);
+    position: relative;
+    transition: color .2s;
+  }
+  .nav-right button:hover { color: var(--terracotta); }
+
+  .cart-badge {
+    position: absolute;
+    top: -6px; right: -6px;
+    background: var(--terracotta);
+    color: white;
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    font-size: 9px;
+    font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    display: none;
+  }
+
+  /* NAV BAR */
+  nav {
+    background: var(--black);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    overflow-x: auto;
+  }
+  nav a {
+    color: white;
+    text-decoration: none;
+    padding: 14px 20px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: background .2s, color .2s;
+    white-space: nowrap;
+  }
+  nav a:hover, nav a.active { background: var(--terracotta); color: white; }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    height: 520px;
+    background: linear-gradient(135deg, var(--black) 0%, var(--charcoal) 60%, #3D2B1F 100%);
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+  .hero-pattern {
+    position: absolute; inset: 0;
+    background-image: radial-gradient(circle at 20% 50%, rgba(200,75,49,0.15) 0%, transparent 50%),
+                      radial-gradient(circle at 80% 20%, rgba(200,150,62,0.1) 0%, transparent 40%);
+  }
+  .hero-content {
+    padding: 0 80px;
+    position: relative;
+    z-index: 2;
+    max-width: 600px;
+  }
+  .hero-tag {
+    display: inline-block;
+    background: var(--terracotta);
+    color: white;
+    padding: 5px 14px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    border-radius: 2px;
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 58px;
+    font-weight: 900;
+    color: white;
+    line-height: 1.1;
+    margin-bottom: 20px;
+  }
+  .hero h1 em { color: var(--gold-light); font-style: normal; }
+  .hero p { color: rgba(255,255,255,0.7); font-size: 16px; line-height: 1.7; margin-bottom: 32px; }
+  .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--terracotta);
+    color: white;
+    border: none;
+    padding: 14px 32px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background .2s, transform .1s;
+  }
+  .btn-primary:hover { background: var(--terracotta-dark); transform: translateY(-1px); }
+  .btn-outline {
+    background: transparent;
+    color: white;
+    border: 1.5px solid rgba(255,255,255,0.4);
+    padding: 14px 32px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: border-color .2s, background .2s;
+  }
+  .btn-outline:hover { border-color: white; background: rgba(255,255,255,0.08); }
+
+  /* SHOP SECTION */
+  .shop-section {
+    padding: 60px 40px;
+  }
+  .section-header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  .section-tag {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 8px;
+  }
+  .section-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--black);
+  }
+
+  /* FILTER + GRID LAYOUT */
+  .shop-layout {
+    display: flex;
+    gap: 32px;
+    align-items: flex-start;
+  }
+
+  /* FILTER SIDEBAR */
+  .filter-sidebar {
+    width: 240px;
+    flex-shrink: 0;
+    background: var(--white);
+    border: 1px solid var(--light-gray);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .filter-header {
+    background: var(--black);
+    color: white;
+    padding: 14px 20px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .filter-clear {
+    font-size: 10px;
+    color: rgba(255,255,255,0.5);
+    cursor: pointer;
+    text-decoration: underline;
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.5);
+    font-family: 'DM Sans', sans-serif;
+  }
+  .filter-group { border-bottom: 1px solid var(--light-gray); }
+  .filter-group-header {
+    padding: 14px 20px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--charcoal);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+  }
+  .filter-group-header:hover { background: var(--cream); }
+  .filter-group-content { padding: 8px 20px 14px; display: none; }
+  .filter-group.open .filter-group-content { display: block; }
+  .filter-chevron { font-size: 10px; transition: transform .2s; }
+  .filter-group.open .filter-chevron { transform: rotate(180deg); }
+
+  .filter-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 5px 0;
+    cursor: pointer;
+    font-size: 13px;
+    color: var(--mid-gray);
+    transition: color .2s;
+  }
+  .filter-option:hover { color: var(--black); }
+  .filter-option input[type="checkbox"] {
+    width: 15px; height: 15px;
+    accent-color: var(--terracotta);
+    cursor: pointer;
+  }
+  .filter-count {
+    margin-left: auto;
+    font-size: 10px;
+    color: var(--mid-gray);
+    background: var(--light-gray);
+    padding: 1px 7px;
+    border-radius: 20px;
+  }
+
+  /* COLOR SWATCHES */
+  .color-swatches { display: flex; flex-wrap: wrap; gap: 8px; padding: 8px 0; }
+  .color-swatch {
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: border-color .2s, transform .1s;
+    position: relative;
+  }
+  .color-swatch:hover { transform: scale(1.1); }
+  .color-swatch.active { border-color: var(--terracotta); }
+  .color-swatch[title="White"] { border: 2px solid var(--light-gray); }
+
+  /* PRICE RANGE */
+  .price-range { padding: 4px 0; }
+  .price-range input[type="range"] {
+    width: 100%;
+    accent-color: var(--terracotta);
+  }
+  .price-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: var(--mid-gray);
+    margin-top: 6px;
+  }
+
+  /* PRODUCT GRID */
+  .product-grid-wrap { flex: 1; min-width: 0; }
+  .grid-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--light-gray);
+  }
+  .results-count { font-size: 13px; color: var(--mid-gray); }
+  .sort-select {
+    padding: 8px 14px;
+    border: 1px solid var(--light-gray);
+    border-radius: 6px;
+    font-size: 12px;
+    font-family: 'DM Sans', sans-serif;
+    background: white;
+    color: var(--charcoal);
+    cursor: pointer;
+  }
+
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 24px;
+  }
+
+  .product-card {
+    background: white;
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--light-gray);
+    transition: box-shadow .25s, transform .2s;
+    position: relative;
+  }
+  .product-card:hover {
+    box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+    transform: translateY(-3px);
+  }
+
+  .product-img {
+    position: relative;
+    aspect-ratio: 3/4;
+    background: var(--cream);
+    overflow: hidden;
+  }
+  .product-img img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform .5s ease;
+  }
+  .product-card:hover .product-img img { transform: scale(1.05); }
+
+  .product-badge {
+    position: absolute;
+    top: 10px; left: 10px;
+    background: var(--terracotta);
+    color: white;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 3px;
+  }
+  .product-badge.preorder { background: var(--gold); color: var(--charcoal); }
+  .product-badge.new { background: var(--black); }
+
+  .wishlist-btn {
+    position: absolute;
+    top: 10px; right: 10px;
+    width: 32px; height: 32px;
+    background: white;
+    border: 1px solid var(--light-gray);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background .2s, color .2s;
+    color: var(--mid-gray);
+  }
+  .wishlist-btn:hover, .wishlist-btn.active { background: var(--terracotta); color: white; border-color: var(--terracotta); }
+
+  .product-info { padding: 14px 16px 16px; }
+  .product-brand {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--mid-gray);
+    margin-bottom: 4px;
+  }
+  .product-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--charcoal);
+    margin-bottom: 4px;
+    line-height: 1.4;
+  }
+  .product-origin {
+    font-size: 11px;
+    color: var(--mid-gray);
+    margin-bottom: 10px;
+  }
+  .product-origin span { color: var(--terracotta); font-weight: 500; }
+  .product-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .product-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--black);
+  }
+  .product-price .old-price {
+    font-size: 12px;
+    color: var(--mid-gray);
+    text-decoration: line-through;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    margin-left: 4px;
+  }
+  .add-cart-btn {
+    background: var(--black);
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background .2s;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .add-cart-btn:hover { background: var(--terracotta); }
+
+  .no-results {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--mid-gray);
+  }
+  .no-results p { font-size: 15px; margin-top: 8px; }
+
+  /* PREORDER SECTION */
+  .preorder-section {
+    padding: 80px 40px;
+    background: var(--black);
+    position: relative;
+    overflow: hidden;
+  }
+  .preorder-section::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -100px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(200,75,49,0.2) 0%, transparent 70%);
+  }
+  .preorder-section .section-tag { color: var(--gold-light); }
+  .preorder-section .section-header h2 { color: white; }
+
+  .preorder-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 24px;
+    position: relative;
+    z-index: 2;
+  }
+  .preorder-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: border-color .25s, transform .2s;
+  }
+  .preorder-card:hover { border-color: var(--gold); transform: translateY(-3px); }
+
+  .preorder-img {
+    aspect-ratio: 1/1;
+    background: rgba(255,255,255,0.04);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .preorder-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.7));
+  }
+  .preorder-launch {
+    position: absolute;
+    bottom: 10px; left: 10px;
+    background: var(--gold);
+    color: var(--charcoal);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 3px;
+  }
+  .preorder-info { padding: 16px; }
+  .preorder-info h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    color: white;
+    margin-bottom: 4px;
+  }
+  .preorder-info p { font-size: 12px; color: rgba(255,255,255,0.55); margin-bottom: 12px; line-height: 1.5; }
+  .preorder-price {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--gold-light);
+    margin-bottom: 12px;
+  }
+  .preorder-btn {
+    width: 100%;
+    background: var(--gold);
+    color: var(--charcoal);
+    border: none;
+    padding: 10px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    transition: background .2s;
+  }
+  .preorder-btn:hover { background: var(--gold-light); }
+
+  .countdown { display: flex; gap: 12px; margin: 12px 0; }
+  .countdown-unit {
+    text-align: center;
+    flex: 1;
+    background: rgba(255,255,255,0.08);
+    border-radius: 6px;
+    padding: 6px 4px;
+  }
+  .countdown-num { font-size: 18px; font-weight: 700; color: white; display: block; }
+  .countdown-label { font-size: 9px; color: rgba(255,255,255,0.4); letter-spacing: 0.08em; text-transform: uppercase; }
+
+  /* CART DRAWER */
+  .cart-overlay {
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 1000;
+    display: none;
+    opacity: 0;
+    transition: opacity .3s;
+  }
+  .cart-overlay.open { display: block; opacity: 1; }
+  .cart-drawer {
+    position: fixed;
+    top: 0; right: -400px;
+    width: 380px;
+    height: 100%;
+    background: white;
+    z-index: 1001;
+    transition: right .35s cubic-bezier(.4,0,.2,1);
+    display: flex;
+    flex-direction: column;
+    box-shadow: -8px 0 40px rgba(0,0,0,0.15);
+  }
+  .cart-drawer.open { right: 0; }
+  .cart-drawer-header {
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--light-gray);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .cart-drawer-header h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+  }
+  .close-cart {
+    background: none; border: none;
+    font-size: 22px; cursor: pointer;
+    color: var(--mid-gray);
+    transition: color .2s;
+  }
+  .close-cart:hover { color: var(--terracotta); }
+  .cart-items { flex: 1; overflow-y: auto; padding: 20px 24px; }
+  .cart-empty { text-align: center; padding: 60px 20px; color: var(--mid-gray); }
+  .cart-empty .icon { font-size: 40px; margin-bottom: 12px; }
+
+  .cart-item {
+    display: flex;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--light-gray);
+  }
+  .cart-item-img {
+    width: 70px; height: 80px;
+    background: var(--cream);
+    border-radius: 8px;
+    overflow: hidden;
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px;
+  }
+  .cart-item-img img { width: 100%; height: 100%; object-fit: cover; }
+  .cart-item-info { flex: 1; }
+  .cart-item-name { font-size: 13px; font-weight: 500; color: var(--charcoal); margin-bottom: 3px; }
+  .cart-item-brand { font-size: 11px; color: var(--mid-gray); margin-bottom: 8px; }
+  .cart-item-footer { display: flex; align-items: center; justify-content: space-between; }
+  .cart-item-price { font-size: 14px; font-weight: 700; color: var(--terracotta); }
+  .cart-qty { display: flex; align-items: center; gap: 8px; }
+  .qty-btn {
+    width: 24px; height: 24px;
+    background: var(--cream);
+    border: 1px solid var(--light-gray);
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex; align-items: center; justify-content: center;
+    transition: background .2s;
+    color: var(--charcoal);
+  }
+  .qty-btn:hover { background: var(--terracotta); color: white; border-color: var(--terracotta); }
+  .qty-num { font-size: 13px; font-weight: 600; min-width: 16px; text-align: center; }
+
+  .cart-footer {
+    padding: 20px 24px;
+    border-top: 1px solid var(--light-gray);
+    background: var(--cream);
+  }
+  .cart-total-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 6px;
+    font-size: 13px;
+    color: var(--mid-gray);
+  }
+  .cart-total-row.final {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--black);
+    margin: 12px 0 16px;
+  }
+  .checkout-btn {
+    width: 100%;
+    background: var(--terracotta);
+    color: white;
+    border: none;
+    padding: 15px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    transition: background .2s;
+  }
+  .checkout-btn:hover { background: var(--terracotta-dark); }
+
+  /* MODALS */
+  .modal-overlay {
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 2000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: white;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 520px;
+    max-height: 90vh;
+    overflow-y: auto;
+    animation: modalIn .3s ease;
+  }
+  @keyframes modalIn { from { transform: scale(.95); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+  .modal-header {
+    padding: 24px 28px 20px;
+    border-bottom: 1px solid var(--light-gray);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .modal-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+  }
+  .modal-close {
+    background: none; border: none;
+    font-size: 20px; cursor: pointer;
+    color: var(--mid-gray);
+  }
+  .modal-body { padding: 24px 28px; }
+  .modal-footer { padding: 16px 28px 24px; }
+
+  /* FORMS */
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-group { margin-bottom: 16px; }
+  .form-group.full { grid-column: 1 / -1; }
+  label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--charcoal);
+    margin-bottom: 6px;
+  }
+  .form-control {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1.5px solid var(--light-gray);
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--charcoal);
+    background: white;
+    transition: border-color .2s, box-shadow .2s;
+    outline: none;
+  }
+  .form-control:focus {
+    border-color: var(--terracotta);
+    box-shadow: 0 0 0 3px rgba(200,75,49,0.1);
+  }
+  .form-control.error { border-color: #E53935; }
+  .error-msg { color: #E53935; font-size: 11px; margin-top: 4px; display: none; }
+  .error-msg.show { display: block; }
+
+  .submit-btn {
+    width: 100%;
+    background: var(--terracotta);
+    color: white;
+    border: none;
+    padding: 14px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    transition: background .2s;
+  }
+  .submit-btn:hover { background: var(--terracotta-dark); }
+  .submit-btn:disabled { background: var(--mid-gray); cursor: not-allowed; }
+
+  .form-divider { text-align: center; color: var(--mid-gray); font-size: 12px; margin: 16px 0; position: relative; }
+  .form-divider::before, .form-divider::after { content: ''; position: absolute; top: 50%; width: 42%; height: 1px; background: var(--light-gray); }
+  .form-divider::before { left: 0; }
+  .form-divider::after { right: 0; }
+  .form-link { color: var(--terracotta); font-weight: 600; cursor: pointer; text-decoration: none; }
+  .form-link:hover { text-decoration: underline; }
+  .form-note { font-size: 12px; color: var(--mid-gray); text-align: center; margin-top: 12px; }
+
+  .success-banner {
+    background: #E8F5E9;
+    border: 1px solid #A5D6A7;
+    border-radius: 8px;
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 18px;
+    display: none;
+  }
+  .success-banner.show { display: flex; }
+  .success-banner p { font-size: 13px; color: #2E7D32; }
+
+  /* TOAST */
+  .toast-container { position: fixed; bottom: 24px; right: 24px; z-index: 9999; display: flex; flex-direction: column; gap: 10px; }
+  .toast {
+    background: var(--charcoal);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 500;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    animation: toastIn .3s ease;
+    max-width: 300px;
+  }
+  .toast.success { background: #2E7D32; }
+  .toast.error { background: #C62828; }
+  @keyframes toastIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+
+  /* PREORDER MODAL */
+  .preorder-modal-img { width: 100%; height: 160px; background: var(--cream); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 52px; margin-bottom: 16px; }
+
+  /* FOOTER */
+  footer {
+    background: var(--black);
+    color: rgba(255,255,255,0.7);
+    padding: 60px 40px 30px;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 50px;
+  }
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 900;
+    color: white;
+    letter-spacing: 0.06em;
+    margin-bottom: 14px;
+  }
+  .footer-logo span { color: var(--terracotta); }
+  .footer-tagline { font-size: 13px; line-height: 1.6; margin-bottom: 20px; }
+  .footer-contact a { display: block; color: rgba(255,255,255,0.6); font-size: 12px; margin-bottom: 5px; text-decoration: none; }
+  .footer-contact a:hover { color: var(--gold-light); }
+  .footer-heading { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: white; margin-bottom: 16px; }
+  .footer-links { list-style: none; }
+  .footer-links li { margin-bottom: 8px; }
+  .footer-links a { color: rgba(255,255,255,0.6); font-size: 13px; text-decoration: none; transition: color .2s; }
+  .footer-links a:hover { color: var(--gold-light); }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+  }
+  .footer-socials { display: flex; gap: 14px; }
+  .footer-socials a {
+    width: 34px; height: 34px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+    text-decoration: none;
+    transition: background .2s;
+    color: white;
+  }
+  .footer-socials a:hover { background: var(--terracotta); }
+
+  /* ACTIVE FILTERS DISPLAY */
+  .active-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .filter-tag {
+    background: var(--cream);
+    border: 1px solid var(--light-gray);
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--charcoal);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+  }
+  .filter-tag:hover { background: var(--terracotta); color: white; border-color: var(--terracotta); }
+  .filter-tag .remove { font-size: 13px; font-weight: 700; }
+
+  /* SEARCH */
+  .search-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .search-input {
+    flex: 1;
+    padding: 10px 14px 10px 38px;
+    border: 1.5px solid var(--light-gray);
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: 'DM Sans', sans-serif;
+    background: white url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236B6B68' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.35-4.35'/%3E%3C/svg%3E") no-repeat 12px center;
+    outline: none;
+    transition: border-color .2s;
+  }
+  .search-input:focus { border-color: var(--terracotta); }
+
+  /* NEWSLETTER STRIP */
+  .newsletter-strip {
+    background: var(--cream);
+    padding: 50px 40px;
+    text-align: center;
+  }
+  .newsletter-strip h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    margin-bottom: 8px;
+  }
+  .newsletter-strip p { font-size: 14px; color: var(--mid-gray); margin-bottom: 20px; }
+  .newsletter-form { display: flex; gap: 10px; max-width: 440px; margin: 0 auto; }
+  .newsletter-form input {
+    flex: 1;
+    padding: 12px 16px;
+    border: 1.5px solid var(--light-gray);
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: 'DM Sans', sans-serif;
+    outline: none;
+  }
+  .newsletter-form input:focus { border-color: var(--terracotta); }
+  .newsletter-form button {
+    background: var(--terracotta);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    white-space: nowrap;
+    transition: background .2s;
+  }
+  .newsletter-form button:hover { background: var(--terracotta-dark); }
+
+  /* LOADING SPINNER */
+  .spinner {
+    width: 20px; height: 20px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin .7s linear infinite;
+    display: inline-block;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .shop-layout { flex-direction: column; }
+    .filter-sidebar { width: 100%; }
+    header { padding: 15px 20px; }
+    .hero-content { padding: 0 30px; }
+    .hero h1 { font-size: 38px; }
+    .top-bar, .footer-grid { display: none; }
+    .shop-section, .preorder-section { padding: 40px 20px; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .top-bar { display: none; }
+    .logo { font-size: 22px; }
+  }
+  @media (max-width: 600px) {
+    .form-row { grid-template-columns: 1fr; }
+    .hero { height: auto; padding: 50px 0; }
+    .hero h1 { font-size: 30px; }
+    .product-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  }
+
+  /* Misc */
+  .text-center { text-align: center; }
+  .mt-20 { margin-top: 20px; }
+  .hidden { display: none !important; }
+  a { cursor: pointer; }
+  .flag { font-size: 14px; }
+</style>
+</head>
+<body>
+
+<!-- PROMO BAR -->
+<div class="promo-bar">
+  🎉 ENJOY 10% OFF YOUR FIRST ORDER — Use code <strong>WELCOME10</strong> &nbsp;|&nbsp; <a>SHOP FOR EASTER</a> &nbsp;|&nbsp; <a>SHOP MODEST FASHION</a> &nbsp;|&nbsp; <a>WOMEN-LED BRANDS</a>
+</div>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <div>
+    <a href="mailto:immanueltopaz@gmail.com">✉ immanueltopaz@gmail.com</a>
+  </div>
+  <div style="display:flex;gap:20px;">
+    <span>🇬🇭 GHS</span>
+    <a onclick="openModal('loginModal')">Sign In</a>
+    <a onclick="openModal('registerModal')">Register</a>
+  </div>
+  <div>
+    <a href="tel:+233 553179818">📱 +233553179818</a>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header>
+  <nav class="nav-left" style="display:flex;gap:24px;">
+    <a href="#" onclick="filterByNav('all')">HOME</a>
+    <a href="#about">ABOUT CARTHY'S</a>
+    <a href="#" onclick="openModal('registerModal')">BRAND SIGNUP</a>
+  </nav>
+
+  <a class="logo" href="#" onclick="filterByNav('all')">CAR<span>●</span>THY</a>
+
+  <div class="nav-right">
+    <button title="Search" onclick="document.querySelector('.search-input').focus()">🔍</button>
+    <button title="Wishlist" onclick="showToast('Wishlist feature coming soon!', 'info')">♡</button>
+    <button title="Account" onclick="openModal('loginModal')">👤</button>
+    <button title="Cart" id="cartBtn" onclick="openCart()">
+      🛒
+      <span class="cart-badge" id="cartBadge">0</span>
+    </button>
+  </div>
+</header>
+
+<!-- NAV -->
+<nav>
+  <a href="#" onclick="filterByNav('all')" class="active" id="nav-all">WARDROBE RESET</a>
+  <a href="#" onclick="filterByNav('all')" id="nav-shop">SHOP</a>
+  <a href="#" onclick="filterByNav('new')" id="nav-new">NEW</a>
+  <a href="#" onclick="filterByCategory('men')" id="nav-men">MEN</a>
+  <a href="#" onclick="filterByCategory('women')" id="nav-women">WOMEN</a>
+  <a href="#" onclick="filterByCategory('clothing')" id="nav-clothing">CLOTHING</a>
+  <a href="#" onclick="filterByCategory('shoes')" id="nav-shoes">SHOES</a>
+  <a href="#" onclick="filterByCategory('bags')" id="nav-bags">BAGS</a>
+  <a href="#" onclick="filterByCategory('accessories')" id="nav-accessories">ACCESSORIES</a>
+  <a href="#" onclick="filterByCategory('home')" id="nav-home">HOME DÉCOR</a>
+  <a href="#" onclick="filterByCategory('beauty')" id="nav-beauty">BEAUTY & GROOMING</a>
+  <a href="#" id="nav-brands" onclick="filterByNav('all')">BRANDS</a>
+  <a href="#preorder">PRE-ORDER</a>
+  <a href="#about">BLOG</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-pattern"></div>
+  <div class="hero-content">
+    <div class="hero-tag">✨ New Arrivals 2025</div>
+    <h1>Shop <em>Africa</em><br>& Beyond</h1>
+    <p>Discover handcrafted fashion, artisan goods, and modern African design from leading brands across the continent.</p>
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="document.getElementById('shopSection').scrollIntoView({behavior:'smooth'})">Shop Now</button>
+      <button class="btn-outline" href="#preorder" onclick="document.getElementById('preorder').scrollIntoView({behavior:'smooth'})">Pre-Order Drops</button>
+    </div>
+  </div>
+</section>
+
+<!-- SHOP SECTION -->
+<section class="shop-section" id="shopSection">
+  <div class="section-header">
+    <div class="section-tag">Our Collection</div>
+    <h2>SHOP GHANA & BEYOND</h2>
+  </div>
+
+  <div class="shop-layout">
+    <!-- FILTER SIDEBAR -->
+    <aside class="filter-sidebar">
+      <div class="filter-header">
+        FILTER
+        <button class="filter-clear" onclick="clearAllFilters()">Clear All</button>
+      </div>
+
+      <!-- Search in sidebar -->
+      <div style="padding:12px 16px;border-bottom:1px solid var(--light-gray);">
+        <input type="text" class="search-input" style="padding:8px 12px 8px 34px;font-size:13px;" placeholder="Search products..." id="searchInput" oninput="applyFilters()">
+      </div>
+
+      <!-- Categories -->
+      <div class="filter-group open" id="fg-category">
+        <div class="filter-group-header" onclick="toggleFilter('fg-category')">
+          CATEGORY <span class="filter-chevron">▼</span>
+        </div>
+        <div class="filter-group-content">
+          <label class="filter-option"><input type="checkbox" value="clothing" onchange="applyFilters()"> Clothing <span class="filter-count">18</span></label>
+          <label class="filter-option"><input type="checkbox" value="shoes" onchange="applyFilters()"> Shoes <span class="filter-count">14</span></label>
+          <label class="filter-option"><input type="checkbox" value="bags" onchange="applyFilters()"> Bags <span class="filter-count">10</span></label>
+          <label class="filter-option"><input type="checkbox" value="accessories" onchange="applyFilters()"> Accessories <span class="filter-count">9</span></label>
+          <label class="filter-option"><input type="checkbox" value="home" onchange="applyFilters()"> Home Décor <span class="filter-count">7</span></label>
+          <label class="filter-option"><input type="checkbox" value="beauty" onchange="applyFilters()"> Beauty & Grooming <span class="filter-count">6</span></label>
+          <label class="filter-option"><input type="checkbox" value="men" onchange="applyFilters()"> Men <span class="filter-count">15</span></label>
+          <label class="filter-option"><input type="checkbox" value="women" onchange="applyFilters()"> Women <span class="filter-count">22</span></label>
+        </div>
+      </div>
+
+      <!-- Brands -->
+      <div class="filter-group open" id="fg-brand">
+        <div class="filter-group-header" onclick="toggleFilter('fg-brand')">
+          BRAND <span class="filter-chevron">▼</span>
+        </div>
+        <div class="filter-group-content">
+          <label class="filter-option"><input type="checkbox" value="Mawuli Aseye" onchange="applyFilters()"> Mawuli Aseye <span class="filter-count">6</span></label>
+          <label class="filter-option"><input type="checkbox" value="Akua Made" onchange="applyFilters()"> Akua Made <span class="filter-count">5</span></label>
+          <label class="filter-option"><input type="checkbox" value="Kente Luxe" onchange="applyFilters()"> Kente Luxe <span class="filter-count">8</span></label>
+          <label class="filter-option"><input type="checkbox" value="Afrocraft" onchange="applyFilters()"> Afrocraft <span class="filter-count">4</span></label>
+          <label class="filter-option"><input type="checkbox" value="Nana Benz" onchange="applyFilters()"> Nana Benz <span class="filter-count">3</span></label>
+          <label class="filter-option"><input type="checkbox" value="Lagos Thread" onchange="applyFilters()"> Lagos Thread <span class="filter-count">7</span></label>
+          <label class="filter-option"><input type="checkbox" value="Nairobi Craft" onchange="applyFilters()"> Nairobi Craft <span class="filter-count">5</span></label>
+        </div>
+      </div>
+
+      <!-- Countries -->
+      <div class="filter-group" id="fg-country">
+        <div class="filter-group-header" onclick="toggleFilter('fg-country')">
+          COUNTRY <span class="filter-chevron">▼</span>
+        </div>
+        <div class="filter-group-content">
+          <label class="filter-option"><input type="checkbox" value="Ghana" onchange="applyFilters()"> 🇬🇭 Ghana <span class="filter-count">20</span></label>
+          <label class="filter-option"><input type="checkbox" value="Nigeria" onchange="applyFilters()"> 🇳🇬 Nigeria <span class="filter-count">14</span></label>
+          <label class="filter-option"><input type="checkbox" value="Kenya" onchange="applyFilters()"> 🇰🇪 Kenya <span class="filter-count">8</span></label>
+          <label class="filter-option"><input type="checkbox" value="South Africa" onchange="applyFilters()"> 🇿🇦 South Africa <span class="filter-count">6</span></label>
+          <label class="filter-option"><input type="checkbox" value="Senegal" onchange="applyFilters()"> 🇸🇳 Senegal <span class="filter-count">4</span></label>
+          <label class="filter-option"><input type="checkbox" value="Ethiopia" onchange="applyFilters()"> 🇪🇹 Ethiopia <span class="filter-count">3</span></label>
+          <label class="filter-option"><input type="checkbox" value="Tanzania" onchange="applyFilters()"> 🇹🇿 Tanzania <span class="filter-count">3</span></label>
+        </div>
+      </div>
+
+      <!-- Colors -->
+      <div class="filter-group" id="fg-color">
+        <div class="filter-group-header" onclick="toggleFilter('fg-color')">
+          COLOR <span class="filter-chevron">▼</span>
+        </div>
+        <div class="filter-group-content">
+          <div class="color-swatches">
+            <div class="color-swatch" style="background:#0A0A0A;" title="Black" onclick="toggleColor(this,'Black')"></div>
+            <div class="color-swatch" style="background:#FAFAF8;" title="White" onclick="toggleColor(this,'White')"></div>
+            <div class="color-swatch" style="background:#C84B31;" title="Terracotta" onclick="toggleColor(this,'Terracotta')"></div>
+            <div class="color-swatch" style="background:#5B2D8E;" title="Purple" onclick="toggleColor(this,'Purple')"></div>
+            <div class="color-swatch" style="background:#1A5276;" title="Blue" onclick="toggleColor(this,'Blue')"></div>
+            <div class="color-swatch" style="background:#1E8449;" title="Green" onclick="toggleColor(this,'Green')"></div>
+            <div class="color-swatch" style="background:#F4D03F;" title="Yellow/Gold" onclick="toggleColor(this,'Gold')"></div>
+            <div class="color-swatch" style="background:#D4A574;" title="Brown/Tan" onclick="toggleColor(this,'Brown')"></div>
+            <div class="color-swatch" style="background:#E91E8C;" title="Pink" onclick="toggleColor(this,'Pink')"></div>
+            <div class="color-swatch" style="background:#FF6B35;" title="Orange" onclick="toggleColor(this,'Orange')"></div>
+            <div class="color-swatch" style="background:#808080;" title="Grey" onclick="toggleColor(this,'Grey')"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Price Range -->
+      <div class="filter-group" id="fg-price">
+        <div class="filter-group-header" onclick="toggleFilter('fg-price')">
+          PRICE RANGE <span class="filter-chevron">▼</span>
+        </div>
+        <div class="filter-group-content">
+          <div class="price-range">
+            <input type="range" min="0" max="2000" value="2000" step="50" id="priceRange" oninput="updatePrice(this.value)">
+            <div class="price-labels">
+              <span>GH₵ 0</span>
+              <span id="priceDisplay">GH₵ 2,000</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gender -->
+      <div class="filter-group" id="fg-gender">
+        <div class="filter-group-header" onclick="toggleFilter('fg-gender')">
+          GENDER <span class="filter-chevron">▼</span>
+        </div>
+        <div class="filter-group-content">
+          <label class="filter-option"><input type="checkbox" value="women" onchange="applyFilters()"> Women <span class="filter-count">22</span></label>
+          <label class="filter-option"><input type="checkbox" value="men" onchange="applyFilters()"> Men <span class="filter-count">15</span></label>
+          <label class="filter-option"><input type="checkbox" value="unisex" onchange="applyFilters()"> Unisex <span class="filter-count">11</span></label>
+        </div>
+      </div>
+
+    </aside>
+
+    <!-- PRODUCT GRID -->
+    <div class="product-grid-wrap">
+      <div class="active-filters" id="activeFilters"></div>
+      <div class="grid-controls">
+        <span class="results-count" id="resultsCount">Showing 12 products</span>
+        <select class="sort-select" id="sortSelect" onchange="applyFilters()">
+          <option value="featured">Featured</option>
+          <option value="newest">Newest</option>
+          <option value="price-asc">Price: Low to High</option>
+          <option value="price-desc">Price: High to Low</option>
+          <option value="popular">Most Popular</option>
+        </select>
+      </div>
+      <div class="product-grid" id="productGrid"></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRE-ORDER SECTION -->
+<section class="preorder-section" id="preorder">
+  <div class="section-header">
+    <div class="section-tag">⚡ Coming Soon</div>
+    <h2>PRE-ORDER DROPS</h2>
+    <p style="color:rgba(255,255,255,0.5);font-size:14px;margin-top:8px;">Be first in line. Reserve your piece before it sells out.</p>
+  </div>
+  <div class="preorder-grid" id="preorderGrid"></div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter-strip">
+  <h3>Stay in the Loop</h3>
+  <p>Get first access to new drops, exclusive offers, and stories from African makers.</p>
+  <div class="newsletter-form">
+    <input type="email" placeholder="Your email address" id="nlEmail">
+    <button onclick="subscribeNewsletter()">Subscribe</button>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" style="padding:70px 40px;max-width:900px;margin:0 auto;text-align:center;">
+  <div class="section-tag">Our Story</div>
+  <h2 style="font-family:'Playfair Display',serif;font-size:34px;margin:10px 0 20px;">Celebrating African Excellence</h2>
+  <p style="font-size:15px;color:var(--mid-gray);line-height:1.9;">CARTHY'S is a multi-brand marketplace celebrating the creativity, craftsmanship, and culture of Africa. We connect artisans, designers, and makers from across the continent to global shoppers who value quality and authenticity. Every product tells a story — of hands, heritage, and heart.</p>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px;">
+    <div style="text-align:center;padding:24px;background:var(--cream);border-radius:12px;">
+      <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:900;color:var(--terracotta);">50+</div>
+      <div style="font-size:13px;color:var(--mid-gray);margin-top:4px;">Curated Brands</div>
+    </div>
+    <div style="text-align:center;padding:24px;background:var(--cream);border-radius:12px;">
+      <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:900;color:var(--terracotta);">12</div>
+      <div style="font-size:13px;color:var(--mid-gray);margin-top:4px;">African Countries</div>
+    </div>
+    <div style="text-align:center;padding:24px;background:var(--cream);border-radius:12px;">
+      <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:900;color:var(--terracotta);">10K+</div>
+      <div style="font-size:13px;color:var(--mid-gray);margin-top:4px;">Happy Customers</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo">CAR<span>●</span>THY</div>
+      <p class="footer-tagline">Your premier destination for African fashion, crafts, and lifestyle products.</p>
+      <div class="footer-contact">
+        <a href="mailto:immanueltopaz@gmail.com">✉ immanueltopaz@gmail.com</a>
+        <a href="tel:+233553179818">📱 +233 553179818</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-heading">Shop</div>
+      <ul class="footer-links">
+        <li><a href="#" onclick="filterByCategory('clothing')">Clothing</a></li>
+        <li><a href="#" onclick="filterByCategory('shoes')">Shoes</a></li>
+        <li><a href="#" onclick="filterByCategory('bags')">Bags</a></li>
+        <li><a href="#" onclick="filterByCategory('accessories')">Accessories</a></li>
+        <li><a href="#preorder">Pre-Order</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-heading">Help</div>
+      <ul class="footer-links">
+        <li><a href="#">Shipping Info</a></li>
+        <li><a href="#">Returns & Exchanges</a></li>
+        <li><a href="#">Size Guide</a></li>
+        <li><a href="#">Track Order</a></li>
+        <li><a href="#">FAQs</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-heading">Company</div>
+      <ul class="footer-links">
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#" onclick="openModal('registerModal')">Seller Registration</a></li>
+        <li><a href="#">Press</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 @CARTHY. All rights reserved.</span>
+    <div class="footer-socials">
+      <a href="#" title="Instagram">📷</a>
+      <a href="#" title="Facebook">📘</a>
+      <a href="#" title="Twitter">🐦</a>
+      <a href="#" title="TikTok">📱</a>
+    </div>
+  </div>
+</footer>
+
+<!-- CART DRAWER -->
+<div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-drawer-header">
+    <h3>Your Cart</h3>
+    <button class="close-cart" onclick="closeCart()">✕</button>
+  </div>
+  <div class="cart-items" id="cartItems">
+    <div class="cart-empty" id="cartEmpty">
+      <div class="icon">🛒</div>
+      <strong>Your cart is empty</strong>
+      <p>Add some beautiful pieces to get started!</p>
+    </div>
+  </div>
+  <div class="cart-footer" id="cartFooter" style="display:none;">
+    <div class="cart-total-row"><span>Subtotal</span><span id="cartSubtotal">GH₵ 0</span></div>
+    <div class="cart-total-row"><span>Shipping</span><span>Calculated at checkout</span></div>
+    <div class="cart-total-row final"><span>Total</span><span id="cartTotal">GH₵ 0</span></div>
+    <button class="checkout-btn" onclick="checkout()">Proceed to Checkout →</button>
+  </div>
+</div>
+
+<!-- REGISTER MODAL -->
+<div class="modal-overlay" id="registerModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>Create Account</h2>
+      <button class="modal-close" onclick="closeModal('registerModal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="success-banner" id="regSuccess">
+        <span>✅</span>
+        <p>Account created successfully! Welcome to CARTHY'S. Check your email for confirmation.</p>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="regFirstName">First Name *</label>
+          <input type="text" id="regFirstName" class="form-control" placeholder="Kofi">
+          <div class="error-msg" id="err-firstName">Please enter your first name</div>
+        </div>
+        <div class="form-group">
+          <label for="regLastName">Last Name *</label>
+          <input type="text" id="regLastName" class="form-control" placeholder="Mensah">
+          <div class="error-msg" id="err-lastName">Please enter your last name</div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="regAge">Age *</label>
+          <input type="number" id="regAge" class="form-control" placeholder="25" min="18" max="100">
+          <div class="error-msg" id="err-age">Must be 18 or older</div>
+        </div>
+        <div class="form-group">
+          <label for="regDob">Date of Birth *</label>
+          <input type="date" id="regDob" class="form-control">
+          <div class="error-msg" id="err-dob">Please enter your date of birth</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="regEmail">Email Address *</label>
+        <input type="email" id="regEmail" class="form-control" placeholder="kofi@email.com">
+        <div class="error-msg" id="err-email">Please enter a valid email</div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="regPhone">Mobile Number *</label>
+          <input type="tel" id="regPhone" class="form-control" placeholder="+233 XX XXX XXXX">
+          <div class="error-msg" id="err-phone">Please enter your phone number</div>
+        </div>
+        <div class="form-group">
+          <label for="regCountry">Country *</label>
+          <select id="regCountry" class="form-control">
+            <option value="">Select country...</option>
+            <option>Ghana</option>
+            <option>Nigeria</option>
+            <option>Kenya</option>
+            <option>South Africa</option>
+            <option>United Kingdom</option>
+            <option>United States</option>
+            <option>Canada</option>
+            <option>Germany</option>
+            <option>France</option>
+            <option>Senegal</option>
+            <option>Ethiopia</option>
+            <option>Tanzania</option>
+            <option>Uganda</option>
+            <option>Cameroon</option>
+            <option>Other</option>
+          </select>
+          <div class="error-msg" id="err-country">Please select your country</div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="regGender">Gender</label>
+          <select id="regGender" class="form-control">
+            <option value="">Prefer not to say</option>
+            <option>Female</option>
+            <option>Male</option>
+            <option>Non-binary</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="regShoeSize">Shoe Size (EU)</label>
+          <input type="number" id="regShoeSize" class="form-control" placeholder="42" min="30" max="50">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="regPassword">Password *</label>
+        <input type="password" id="regPassword" class="form-control" placeholder="Minimum 8 characters">
+        <div class="error-msg" id="err-password">Password must be at least 8 characters</div>
+      </div>
+      <div class="form-group">
+        <label>
+          <input type="checkbox" id="regNewsletter" style="accent-color:var(--terracotta);" checked>
+          &nbsp;Subscribe to newsletters for exclusive deals
+        </label>
+      </div>
+      <div class="form-group">
+        <label>
+          <input type="checkbox" id="regTerms" style="accent-color:var(--terracotta);">
+          &nbsp;I agree to the <a class="form-link">Terms of Service</a> and <a class="form-link">Privacy Policy</a> *
+        </label>
+        <div class="error-msg" id="err-terms">You must agree to the terms</div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="submit-btn" onclick="submitRegistration()" id="regBtn">Create Account</button>
+      <p class="form-note">Already have an account? <a class="form-link" onclick="switchModal('registerModal','loginModal')">Sign in here</a></p>
+    </div>
+  </div>
+</div>
+
+<!-- LOGIN MODAL -->
+<div class="modal-overlay" id="loginModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>Welcome Back</h2>
+      <button class="modal-close" onclick="closeModal('loginModal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="success-banner" id="loginSuccess">
+        <span>✅</span>
+        <p>Signed in successfully! Welcome back.</p>
+      </div>
+      <div class="form-group">
+        <label for="loginEmail">Email Address</label>
+        <input type="email" id="loginEmail" class="form-control" placeholder="kofi@email.com">
+      </div>
+      <div class="form-group">
+        <label for="loginPassword">Password</label>
+        <input type="password" id="loginPassword" class="form-control" placeholder="Your password">
+      </div>
+      <div style="display:flex;justify-content:flex-end;margin-bottom:16px;">
+        <a class="form-link" style="font-size:12px;">Forgot password?</a>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="submit-btn" onclick="submitLogin()">Sign In</button>
+      <p class="form-note">Don't have an account? <a class="form-link" onclick="switchModal('loginModal','registerModal')">Register here</a></p>
+    </div>
+  </div>
+</div>
+
+<!-- PREORDER MODAL -->
+<div class="modal-overlay" id="preorderModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h2 id="poModalTitle">Pre-Order Item</h2>
+      <button class="modal-close" onclick="closeModal('preorderModal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="preorder-modal-img" id="poModalImg">🎁</div>
+      <p id="poModalDesc" style="color:var(--mid-gray);font-size:14px;margin-bottom:16px;"></p>
+      <div style="background:var(--cream);border-radius:8px;padding:12px 16px;margin-bottom:16px;font-size:13px;">
+        <strong>Expected Launch:</strong> <span id="poModalLaunch"></span><br>
+        <strong>Price:</strong> <span id="poModalPrice" style="color:var(--terracotta);font-weight:700;"></span><br>
+        <strong>Deposit Required:</strong> <span id="poModalDeposit"></span>
+      </div>
+      <div class="form-group">
+        <label for="poName">Full Name *</label>
+        <input type="text" id="poName" class="form-control" placeholder="Your full name">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="poEmail">Email *</label>
+          <input type="email" id="poEmail" class="form-control" placeholder="your@email.com">
+        </div>
+        <div class="form-group">
+          <label for="poPhone">Phone *</label>
+          <input type="tel" id="poPhone" class="form-control" placeholder="+233...">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="poSize">Size</label>
+          <select id="poSize" class="form-control">
+            <option>XS</option><option>S</option><option selected>M</option><option>L</option><option>XL</option><option>XXL</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="poQty">Quantity</label>
+          <input type="number" id="poQty" class="form-control" value="1" min="1" max="5">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="poNotes">Special Notes</label>
+        <textarea id="poNotes" class="form-control" rows="2" placeholder="Any specific requests or color preferences..."></textarea>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="submit-btn" onclick="submitPreorder()" id="poBtn">Reserve My Item</button>
+      <p class="form-note">Your reservation will be confirmed via email within 24 hours</p>
+    </div>
+  </div>
+</div>
+
+<!-- CART CONFIRM OVERLAY (quick view) -->
+<div class="toast-container" id="toastContainer"></div>
+
+<script>
+// ============================================================
+// DATA
+// ============================================================
+const products = [
+  { id:1, name:'Kente Wrap Dress', brand:'Kente Luxe', category:'clothing', gender:'women', country:'Ghana', colors:['Gold','Black'], price:450, oldPrice:580, emoji:'👗', badge:'sale', isNew:false, popular:true },
+  { id:2, name:'Leather Woven Sandals', brand:'Mawuli Aseye', category:'shoes', gender:'women', country:'Ghana', colors:['Brown','Black'], price:320, emoji:'👡', badge:null, isNew:true, popular:true },
+  { id:3, name:'Ankara Crossbody Bag', brand:'Akua Made', category:'bags', gender:'women', country:'Ghana', colors:['Terracotta','Gold'], price:280, emoji:'👜', badge:'new', isNew:true },
+  { id:4, name:'Adinkra Symbol Necklace', brand:'Afrocraft', category:'accessories', gender:'unisex', country:'Ghana', colors:['Gold'], price:95, emoji:'📿', badge:null },
+  { id:5, name:'Dashiki Print Shirt', brand:'Lagos Thread', category:'clothing', gender:'men', country:'Nigeria', colors:['Blue','Gold'], price:195, emoji:'👔', badge:null, isNew:true },
+  { id:6, name:'Bespoke Agbada Set', brand:'Lagos Thread', category:'clothing', gender:'men', country:'Nigeria', colors:['White','Gold'], price:890, oldPrice:1100, emoji:'🧥', badge:'sale' },
+  { id:7, name:'Maasai Beaded Bracelet', brand:'Nairobi Craft', category:'accessories', gender:'unisex', country:'Kenya', colors:['Terracotta','Blue'], price:65, emoji:'📿', badge:null },
+  { id:8, name:'African Print Sneakers', brand:'Akua Made', category:'shoes', gender:'unisex', country:'Ghana', colors:['Orange','Black'], price:380, emoji:'👟', badge:'new', isNew:true },
+  { id:9, name:'Wax Print Tote Bag', brand:'Kente Luxe', category:'bags', gender:'women', country:'Ghana', colors:['Blue','Gold'], price:150, emoji:'👝', badge:null },
+  { id:10, name:'Bogolan Mud Cloth Cushion', brand:'Nana Benz', category:'home', gender:'unisex', country:'Senegal', colors:['Brown','Black'], price:120, emoji:'🛋️', badge:null },
+  { id:11, name:'Natural Shea Butter Set', brand:'Afrocraft', category:'beauty', gender:'unisex', country:'Ghana', colors:[], price:85, emoji:'🧴', badge:'new', isNew:true },
+  { id:12, name:'Kente Stole / Scarf', brand:'Kente Luxe', category:'accessories', gender:'unisex', country:'Ghana', colors:['Gold','Green'], price:110, emoji:'🧣', badge:null },
+  { id:13, name:'Leather Chelsea Boots', brand:'Mawuli Aseye', category:'shoes', gender:'men', country:'Ghana', colors:['Brown'], price:620, emoji:'👢', badge:null, popular:true },
+  { id:14, name:'Silk Ankara Blouse', brand:'Akua Made', category:'clothing', gender:'women', country:'Ghana', colors:['Pink','Purple'], price:245, emoji:'👚', badge:null, isNew:true },
+  { id:15, name:'Handwoven Basket Lamp', brand:'Nairobi Craft', category:'home', gender:'unisex', country:'Kenya', colors:['Brown'], price:230, emoji:'🪔', badge:null },
+  { id:16, name:'Zulu Warrior Ring', brand:'Afrocraft', category:'accessories', gender:'men', country:'South Africa', colors:['Gold','Black'], price:75, emoji:'💍', badge:null },
+];
+
+const preorderItems = [
+  {
+    id:'po1', name:'The Ashanti Heritage Collection', brand:'Kente Luxe', emoji:'👘',
+    desc:'A regal 5-piece capsule collection featuring hand-woven Kente fabric. Limited to 200 pieces worldwide.',
+    launch:'June 15, 2025', price:'GH₵ 1,200', deposit:'GH₵ 300',
+    countdown: new Date('2025-06-15').getTime()
+  },
+  {
+    id:'po2', name:'Lagos Leather Signature Bag', brand:'Lagos Thread', emoji:'👜',
+    desc:'Full-grain leather handcrafted in Lagos. Features gold-plated hardware and a custom dust bag.',
+    launch:'May 30, 2025', price:'GH₵ 850', deposit:'GH₵ 200',
+    countdown: new Date('2025-05-30').getTime()
+  },
+  {
+    id:'po3', name:'Continental Sneaker Drop', brand:'Akua Made', emoji:'👟',
+    desc:'Pan-African motif sneakers crafted with recycled materials. 12 cities, 12 colorways.',
+    launch:'July 1, 2025', price:'GH₵ 490', deposit:'GH₵ 100',
+    countdown: new Date('2025-07-01').getTime()
+  },
+  {
+    id:'po4', name:'Nubian Jewels Set', brand:'Afrocraft', emoji:'💎',
+    desc:'24k gold-plated sterling silver set. Necklace, earrings & bracelet with ancient symbols.',
+    launch:'August 20, 2025', price:'GH₵ 680', deposit:'GH₵ 150',
+    countdown: new Date('2025-08-20').getTime()
+  },
+];
+
+// ============================================================
+// STATE
+// ============================================================
+let cart = JSON.parse(localStorage.getItem('adjoaa_cart') || '[]');
+let activeColors = [];
+let maxPrice = 2000;
+let currentPreorderItem = null;
+
+// ============================================================
+// RENDER PRODUCTS
+// ============================================================
+function renderProducts(items) {
+  const grid = document.getElementById('productGrid');
+  document.getElementById('resultsCount').textContent = `Showing ${items.length} product${items.length !== 1 ? 's' : ''}`;
+  if (!items.length) {
+    grid.innerHTML = `<div class="no-results"><div style="font-size:40px">🔍</div><p>No products match your filters.<br>Try adjusting your selection.</p></div>`;
+    return;
+  }
+  grid.innerHTML = items.map(p => `
+    <div class="product-card">
+      <div class="product-img">
+        <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:64px;background:var(--cream);">${p.emoji}</div>
+        ${p.badge ? `<div class="product-badge ${p.badge === 'new' ? 'new' : ''}">${p.badge.toUpperCase()}</div>` : ''}
+        <button class="wishlist-btn" onclick="toggleWishlist(this)" title="Add to Wishlist">♡</button>
+      </div>
+      <div class="product-info">
+        <div class="product-brand">${p.brand}</div>
+        <div class="product-name">${p.name}</div>
+        <div class="product-origin">Made in <span>${p.country}</span></div>
+        <div class="product-footer">
+          <div class="product-price">
+            GH₵ ${p.price.toLocaleString()}
+            ${p.oldPrice ? `<span class="old-price">GH₵ ${p.oldPrice.toLocaleString()}</span>` : ''}
+          </div>
+          <button class="add-cart-btn" onclick="addToCart(${p.id})">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ============================================================
+// FILTER / SORT LOGIC
+// ============================================================
+function applyFilters() {
+  let filtered = [...products];
+  
+  // Search
+  const q = document.getElementById('searchInput').value.toLowerCase();
+  if (q) filtered = filtered.filter(p => p.name.toLowerCase().includes(q) || p.brand.toLowerCase().includes(q) || p.country.toLowerCase().includes(q));
+
+  // Category checkboxes
+  const catChecked = [...document.querySelectorAll('#fg-category input:checked')].map(i => i.value);
+  if (catChecked.length) filtered = filtered.filter(p => catChecked.includes(p.category) || catChecked.includes(p.gender));
+
+  // Brand checkboxes
+  const brandChecked = [...document.querySelectorAll('#fg-brand input:checked')].map(i => i.value);
+  if (brandChecked.length) filtered = filtered.filter(p => brandChecked.includes(p.brand));
+
+  // Country checkboxes
+  const countryChecked = [...document.querySelectorAll('#fg-country input:checked')].map(i => i.value);
+  if (countryChecked.length) filtered = filtered.filter(p => countryChecked.includes(p.country));
+
+  // Colors
+  if (activeColors.length) filtered = filtered.filter(p => p.colors && p.colors.some(c => activeColors.includes(c)));
+
+  // Price
+  filtered = filtered.filter(p => p.price <= maxPrice);
+
+  // Sort
+  const sort = document.getElementById('sortSelect').value;
+  if (sort === 'price-asc') filtered.sort((a,b) => a.price - b.price);
+  else if (sort === 'price-desc') filtered.sort((a,b) => b.price - a.price);
+  else if (sort === 'newest') filtered.sort((a,b) => (b.isNew ? 1 : 0) - (a.isNew ? 1 : 0));
+  else if (sort === 'popular') filtered.sort((a,b) => (b.popular ? 1 : 0) - (a.popular ? 1 : 0));
+
+  renderProducts(filtered);
+  updateActiveFilterTags();
+}
+
+function updateActiveFilterTags() {
+  const container = document.getElementById('activeFilters');
+  const tags = [];
+  
+  [...document.querySelectorAll('#fg-category input:checked, #fg-brand input:checked, #fg-country input:checked')].forEach(i => {
+    tags.push({ label: i.value, el: i });
+  });
+  activeColors.forEach(c => tags.push({ label: c, color: true }));
+
+  container.innerHTML = tags.map((t, i) => `
+    <div class="filter-tag" onclick="removeFilterTag(${i})">
+      ${t.label} <span class="remove">×</span>
+    </div>
+  `).join('');
+}
+
+function removeFilterTag(idx) {
+  const all = [...document.querySelectorAll('#fg-category input:checked, #fg-brand input:checked, #fg-country input:checked')];
+  if (idx < all.length) {
+    all[idx].checked = false;
+  } else {
+    activeColors.splice(idx - all.length, 1);
+    document.querySelectorAll('.color-swatch').forEach(s => {
+      if (!activeColors.includes(s.title)) s.classList.remove('active');
+    });
+  }
+  applyFilters();
+}
+
+function clearAllFilters() {
+  document.querySelectorAll('.filter-group input[type="checkbox"]').forEach(i => i.checked = false);
+  document.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('active'));
+  activeColors = [];
+  maxPrice = 2000;
+  document.getElementById('priceRange').value = 2000;
+  document.getElementById('priceDisplay').textContent = 'GH₵ 2,000';
+  document.getElementById('searchInput').value = '';
+  applyFilters();
+}
+
+function filterByCategory(cat) {
+  clearAllFilters();
+  const checkbox = document.querySelector(`#fg-category input[value="${cat}"]`);
+  if (checkbox) { checkbox.checked = true; document.getElementById('fg-category').classList.add('open'); }
+  applyFilters();
+  document.getElementById('shopSection').scrollIntoView({ behavior: 'smooth' });
+}
+
+function filterByNav(type) {
+  clearAllFilters();
+  if (type === 'new') {
+    document.getElementById('sortSelect').value = 'newest';
+  }
+  applyFilters();
+  document.getElementById('shopSection').scrollIntoView({ behavior: 'smooth' });
+}
+
+function toggleFilter(id) {
+  document.getElementById(id).classList.toggle('open');
+}
+
+function toggleColor(el, color) {
+  if (activeColors.includes(color)) {
+    activeColors = activeColors.filter(c => c !== color);
+    el.classList.remove('active');
+  } else {
+    activeColors.push(color);
+    el.classList.add('active');
+  }
+  applyFilters();
+}
+
+function updatePrice(val) {
+  maxPrice = parseInt(val);
+  document.getElementById('priceDisplay').textContent = 'GH₵ ' + parseInt(val).toLocaleString();
+  applyFilters();
+}
+
+// ============================================================
+// CART
+// ============================================================
+function addToCart(id) {
+  const product = products.find(p => p.id === id);
+  if (!product) return;
+  
+  const existing = cart.find(i => i.id === id);
+  if (existing) {
+    existing.qty++;
+  } else {
+    cart.push({ ...product, qty: 1 });
+  }
+  saveCart();
+  updateCartUI();
+  showToast(`${product.name} added to cart!`, 'success');
+  openCart();
+}
+
+function removeFromCart(id) {
+  cart = cart.filter(i => i.id !== id);
+  saveCart();
+  updateCartUI();
+}
+
+function updateQty(id, delta) {
+  const item = cart.find(i => i.id === id);
+  if (!item) return;
+  item.qty += delta;
+  if (item.qty <= 0) removeFromCart(id);
+  else { saveCart(); updateCartUI(); }
+}
+
+function saveCart() {
+  localStorage.setItem('adjoaa_cart', JSON.stringify(cart));
+}
+
+function updateCartUI() {
+  const total = cart.reduce((sum, i) => sum + i.qty, 0);
+  const badge = document.getElementById('cartBadge');
+  badge.textContent = total;
+  badge.style.display = total > 0 ? 'flex' : 'none';
+
+  const empty = document.getElementById('cartEmpty');
+  const footer = document.getElementById('cartFooter');
+  const itemsEl = document.getElementById('cartItems');
+  
+  const cartItemsEls = cart.map(item => `
+    <div class="cart-item">
+      <div class="cart-item-img">${item.emoji}</div>
+      <div class="cart-item-info">
+        <div class="cart-item-name">${item.name}</div>
+        <div class="cart-item-brand">${item.brand} · ${item.country}</div>
+        <div class="cart-item-footer">
+          <div class="cart-item-price">GH₵ ${(item.price * item.qty).toLocaleString()}</div>
+          <div class="cart-qty">
+            <button class="qty-btn" onclick="updateQty(${item.id}, -1)">−</button>
+            <span class="qty-num">${item.qty}</span>
+            <button class="qty-btn" onclick="updateQty(${item.id}, 1)">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  `).join('');
+
+  if (cart.length === 0) {
+    empty.style.display = 'block';
+    footer.style.display = 'none';
+    itemsEl.innerHTML = '';
+    itemsEl.appendChild(empty);
+  } else {
+    empty.style.display = 'none';
+    footer.style.display = 'block';
+    itemsEl.innerHTML = cartItemsEls;
+    
+    const subtotal = cart.reduce((sum, i) => sum + (i.price * i.qty), 0);
+    document.getElementById('cartSubtotal').textContent = 'GH₵ ' + subtotal.toLocaleString();
+    document.getElementById('cartTotal').textContent = 'GH₵ ' + subtotal.toLocaleString();
+  }
+}
+
+function openCart() {
+  document.getElementById('cartOverlay').classList.add('open');
+  document.getElementById('cartDrawer').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeCart() {
+  document.getElementById('cartOverlay').classList.remove('open');
+  document.getElementById('cartDrawer').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function checkout() {
+  if (cart.length === 0) return;
+  closeCart();
+  openModal('loginModal');
+  showToast('Please sign in or register to complete your order', 'info');
+}
+
+function toggleWishlist(btn) {
+  btn.classList.toggle('active');
+  btn.textContent = btn.classList.contains('active') ? '♥' : '♡';
+  showToast(btn.classList.contains('active') ? 'Added to wishlist!' : 'Removed from wishlist', btn.classList.contains('active') ? 'success' : 'info');
+}
+
+// ============================================================
+// MODALS
+// ============================================================
+function openModal(id) {
+  document.getElementById(id).classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal(id) {
+  document.getElementById(id).classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function switchModal(from, to) {
+  closeModal(from);
+  setTimeout(() => openModal(to), 200);
+}
+
+// Click outside to close
+document.querySelectorAll('.modal-overlay').forEach(overlay => {
+  overlay.addEventListener('click', function(e) {
+    if (e.target === this) closeModal(this.id);
+  });
+});
+
+// ============================================================
+// REGISTRATION
+// ============================================================
+async function submitRegistration() {
+  let valid = true;
+  
+  const fields = [
+    { id: 'regFirstName', errId: 'err-firstName', check: v => v.length >= 2 },
+    { id: 'regLastName', errId: 'err-lastName', check: v => v.length >= 2 },
+    { id: 'regAge', errId: 'err-age', check: v => parseInt(v) >= 18 },
+    { id: 'regDob', errId: 'err-dob', check: v => v.length > 0 },
+    { id: 'regEmail', errId: 'err-email', check: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) },
+    { id: 'regPhone', errId: 'err-phone', check: v => v.length >= 7 },
+    { id: 'regCountry', errId: 'err-country', check: v => v.length > 0 },
+    { id: 'regPassword', errId: 'err-password', check: v => v.length >= 8 },
+  ];
+
+  fields.forEach(f => {
+    const el = document.getElementById(f.id);
+    const err = document.getElementById(f.errId);
+    if (!f.check(el.value)) {
+      el.classList.add('error'); err.classList.add('show'); valid = false;
+    } else {
+      el.classList.remove('error'); err.classList.remove('show');
+    }
+  });
+
+  if (!document.getElementById('regTerms').checked) {
+    document.getElementById('err-terms').classList.add('show'); valid = false;
+  } else {
+    document.getElementById('err-terms').classList.remove('show');
+  }
+
+  if (!valid) return;
+
+  const btn = document.getElementById('regBtn');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span> Creating Account...';
+
+  const userData = {
+    firstName: document.getElementById('regFirstName').value,
+    lastName: document.getElementById('regLastName').value,
+    age: document.getElementById('regAge').value,
+    dob: document.getElementById('regDob').value,
+    email: document.getElementById('regEmail').value,
+    phone: document.getElementById('regPhone').value,
+    country: document.getElementById('regCountry').value,
+    gender: document.getElementById('regGender').value,
+    shoeSize: document.getElementById('regShoeSize').value,
+    newsletter: document.getElementById('regNewsletter').checked,
+    registeredAt: new Date().toISOString()
+  };
+
+  // Save locally & simulate email send
+  const users = JSON.parse(localStorage.getItem('adjoaa_users') || '[]');
+  users.push(userData);
+  localStorage.setItem('adjoaa_users', JSON.stringify(users));
+  localStorage.setItem('adjoaa_currentUser', JSON.stringify(userData));
+
+  // Simulate API call to backend
+  await simulateApiCall('/api/register', userData);
+
+  btn.disabled = false;
+  btn.innerHTML = 'Create Account';
+  document.getElementById('regSuccess').classList.add('show');
+  showToast('Welcome to ADJOAA, ' + userData.firstName + '! 🎉', 'success');
+  
+  // Update header
+  setTimeout(() => {
+    closeModal('registerModal');
+    document.getElementById('regSuccess').classList.remove('show');
+  }, 3000);
+}
+
+async function submitLogin() {
+  const email = document.getElementById('loginEmail').value;
+  const password = document.getElementById('loginPassword').value;
+  
+  if (!email || !password) { showToast('Please fill in all fields', 'error'); return; }
+  
+  await simulateApiCall('/api/login', { email, password });
+  document.getElementById('loginSuccess').classList.add('show');
+  showToast('Welcome back!', 'success');
+  setTimeout(() => {
+    closeModal('loginModal');
+    document.getElementById('loginSuccess').classList.remove('show');
+  }, 2000);
+}
+
+function simulateApiCall(endpoint, data) {
+  return new Promise(resolve => {
+    console.log(`POST ${endpoint}`, data);
+    // In production, replace with:
+    // fetch('/api/register', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(data) })
+    setTimeout(resolve, 1200);
+  });
+}
+
+// ============================================================
+// PRE-ORDER
+// ============================================================
+function renderPreorder() {
+  const grid = document.getElementById('preorderGrid');
+  grid.innerHTML = preorderItems.map(item => {
+    const timeLeft = getCountdown(item.countdown);
+    return `
+      <div class="preorder-card">
+        <div class="preorder-img">
+          <span style="font-size:56px;">${item.emoji}</span>
+          <div class="preorder-overlay"></div>
+          <div class="preorder-launch">Launches ${item.launch}</div>
+        </div>
+        <div class="preorder-info">
+          <h3>${item.name}</h3>
+          <p>${item.desc}</p>
+          <div class="preorder-price">${item.price}</div>
+          <div class="countdown">
+            <div class="countdown-unit"><span class="countdown-num" id="cd-d-${item.id}">${timeLeft.days}</span><span class="countdown-label">Days</span></div>
+            <div class="countdown-unit"><span class="countdown-num" id="cd-h-${item.id}">${timeLeft.hours}</span><span class="countdown-label">Hrs</span></div>
+            <div class="countdown-unit"><span class="countdown-num" id="cd-m-${item.id}">${timeLeft.mins}</span><span class="countdown-label">Min</span></div>
+            <div class="countdown-unit"><span class="countdown-num" id="cd-s-${item.id}">${timeLeft.secs}</span><span class="countdown-label">Sec</span></div>
+          </div>
+          <button class="preorder-btn" onclick="openPreorder('${item.id}')">Pre-Order Now →</button>
+        </div>
+      </div>
+    `;
+  }).join('');
+  
+  startCountdowns();
+}
+
+function getCountdown(target) {
+  const now = new Date().getTime();
+  const diff = Math.max(0, target - now);
+  return {
+    days: Math.floor(diff / (1000*60*60*24)),
+    hours: Math.floor((diff % (1000*60*60*24)) / (1000*60*60)),
+    mins: Math.floor((diff % (1000*60*60)) / (1000*60)),
+    secs: Math.floor((diff % (1000*60)) / 1000),
+  };
+}
+
+function startCountdowns() {
+  setInterval(() => {
+    preorderItems.forEach(item => {
+      const t = getCountdown(item.countdown);
+      const d = document.getElementById(`cd-d-${item.id}`);
+      const h = document.getElementById(`cd-h-${item.id}`);
+      const m = document.getElementById(`cd-m-${item.id}`);
+      const s = document.getElementById(`cd-s-${item.id}`);
+      if (d) { d.textContent = t.days; h.textContent = t.hours; m.textContent = t.mins; s.textContent = t.secs; }
+    });
+  }, 1000);
+}
+
+function openPreorder(id) {
+  const item = preorderItems.find(p => p.id === id);
+  if (!item) return;
+  currentPreorderItem = item;
+  document.getElementById('poModalTitle').textContent = 'Pre-Order: ' + item.name;
+  document.getElementById('poModalImg').textContent = item.emoji;
+  document.getElementById('poModalDesc').textContent = item.desc;
+  document.getElementById('poModalLaunch').textContent = item.launch;
+  document.getElementById('poModalPrice').textContent = item.price;
+  document.getElementById('poModalDeposit').textContent = item.deposit;
+  openModal('preorderModal');
+}
+
+async function submitPreorder() {
+  const name = document.getElementById('poName').value;
+  const email = document.getElementById('poEmail').value;
+  const phone = document.getElementById('poPhone').value;
+  
+  if (!name || !email || !phone) { showToast('Please fill in all required fields', 'error'); return; }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showToast('Please enter a valid email', 'error'); return; }
+  
+  const btn = document.getElementById('poBtn');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span> Processing...';
+  
+  const order = {
+    item: currentPreorderItem.name,
+    brand: currentPreorderItem.brand,
+    name, email, phone,
+    size: document.getElementById('poSize').value,
+    qty: document.getElementById('poQty').value,
+    notes: document.getElementById('poNotes').value,
+    orderedAt: new Date().toISOString()
+  };
+  
+  await simulateApiCall('/api/preorder', order);
+  
+  btn.disabled = false;
+  btn.innerHTML = 'Reserve My Item';
+  closeModal('preorderModal');
+  showToast('Pre-order confirmed! Check your email 🎉', 'success');
+  
+  // Reset form
+  ['poName','poEmail','poPhone','poNotes'].forEach(id => document.getElementById(id).value = '');
+}
+
+// ============================================================
+// NEWSLETTER
+// ============================================================
+function subscribeNewsletter() {
+  const email = document.getElementById('nlEmail').value;
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    showToast('Please enter a valid email address', 'error'); return;
+  }
+  simulateApiCall('/api/newsletter', { email });
+  document.getElementById('nlEmail').value = '';
+  showToast('Subscribed! Welcome to the ADJOAA family 💌', 'success');
+}
+
+// ============================================================
+// TOAST
+// ============================================================
+function showToast(msg, type='info') {
+  const container = document.getElementById('toastContainer');
+  const toast = document.createElement('div');
+  toast.className = `toast ${type}`;
+  const icons = { success: '✅', error: '❌', info: '💬' };
+  toast.innerHTML = `<span>${icons[type] || '💬'}</span> ${msg}`;
+  container.appendChild(toast);
+  setTimeout(() => {
+    toast.style.transition = 'opacity .3s, transform .3s';
+    toast.style.opacity = '0';
+    toast.style.transform = 'translateX(100%)';
+    setTimeout(() => toast.remove(), 300);
+  }, 3500);
+}
+
+// ============================================================
+// INIT
+// ============================================================
+renderProducts(products);
+renderPreorder();
+updateCartUI();
+</script>
+</body>
+</html>
